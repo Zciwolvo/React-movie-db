@@ -117,7 +117,7 @@ const App = observer((props) => {
         <div className = "relative" >
             <Navigation showByYear={showByYear} setYear={setYear} setGenreID={setGenreID} showGenre={showGenre} showWatchlist={showWatchlist} showFavorite={showFavorite} handleInput = {handleInput} changePage = {changePage} term = {term} clearSearch = { clearSearch } showTopRated = {showTopRated} showLatest = {showLatest}/> 
             <Switch>
-                <Route exact path = "/" >
+                <Route exact path = "/React-movie-db" >
                     <Home changePage = { changePage }
                         handleInput = { handleInput }
                         term = { props.store.term }

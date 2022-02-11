@@ -221,7 +221,7 @@ const Navigation = ({ showByYear, setYear ,setGenreID ,showGenre, changePage, ha
     return <header>
         <Menu>
             <Switch>
-                <Route exact path = "/" >
+                <Route exact path = "/React-movie-db" >
                     <SearchBar changePage = { changePage }
                         handleInput = { handleInput }
                         term = { term }
@@ -229,32 +229,32 @@ const Navigation = ({ showByYear, setYear ,setGenreID ,showGenre, changePage, ha
                 </Route> 
             </Switch>
             <ButtonContainer>
-                <Link to="/" onClick={clearSearch}><Button>Home</Button></Link>
+                <Link to="/React-movie-db" onClick={clearSearch}><Button>Home</Button></Link>
             </ButtonContainer>
             <ButtonContainer>
-                <Link to="/" onClick={showWatchlist}><Button>Do obejrzenia</Button></Link>
+                <Link to="/React-movie-db" onClick={showWatchlist}><Button>Do obejrzenia</Button></Link>
             </ButtonContainer>
             <ButtonContainer>
-                <Link to="/" onClick={showFavorite}><Button>Ulubione</Button></Link>
+                <Link to="/React-movie-db" onClick={showFavorite}><Button>Ulubione</Button></Link>
             </ButtonContainer>
         </Menu>
         <CustomizationMenu>
             <h1>Sortuj według:</h1>
             <ButtonContainer>
-                <Link to="/" onClick={clearSearch}><Button>Popularność</Button></Link>
+                <Link to="/React-movie-db" onClick={clearSearch}><Button>Popularność</Button></Link>
             </ButtonContainer>
             <ButtonContainer>
-                <Link to="/" onClick={showLatest}><Button>Najnowsze</Button></Link>
+                <Link to="/React-movie-db" onClick={showLatest}><Button>Najnowsze</Button></Link>
             </ButtonContainer>
             <ButtonContainer>
-                <Link to="/" onClick={showTopRated}><Button>Najlepiej oceniane</Button></Link>
+                <Link to="/React-movie-db" onClick={showTopRated}><Button>Najlepiej oceniane</Button></Link>
             </ButtonContainer>
         </CustomizationMenu>
         <GenresMenu>
             <h1>Gatunek: </h1>
                 {genres.genres.map((genre) => (
                 <GenreButtonContainer onMouseEnter={() => setGenreID(genre.id)}>
-                        <Link to="/" onClick={showGenre} ><Button>{genre.name}</Button></Link>
+                        <Link to="/React-movie-db" onClick={showGenre} ><Button>{genre.name}</Button></Link>
                 </GenreButtonContainer>
                     ))}
             
@@ -263,7 +263,7 @@ const Navigation = ({ showByYear, setYear ,setGenreID ,showGenre, changePage, ha
             <h1>Rok: </h1>
                 {years.years.map((year) => (
                 <GenreButtonContainer onMouseEnter={() => setYear(year.year)}>
-                        <Link to="/" onClick={showByYear} ><Button>{year.year}</Button></Link>
+                        <Link to="/React-movie-db" onClick={showByYear} ><Button>{year.year}</Button></Link>
                 </GenreButtonContainer>
                     ))}
             
