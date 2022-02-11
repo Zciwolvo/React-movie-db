@@ -1,18 +1,22 @@
 {
   "files": {
     "main.css": "/React-movie-db/static/css/main.d6e75f72.chunk.css",
-    "main.js": "/React-movie-db/static/js/main.ea69526b.chunk.js",
-    "main.js.map": "/React-movie-db/static/js/main.ea69526b.chunk.js.map",
-    "runtime-main.js": "/React-movie-db/static/js/runtime-main.122455ea.js",
-    "runtime-main.js.map": "/React-movie-db/static/js/runtime-main.122455ea.js.map",
+    "main.js": "/React-movie-db/static/js/main.0b875bbd.chunk.js",
+    "main.js.map": "/React-movie-db/static/js/main.0b875bbd.chunk.js.map",
+    "runtime-main.js": "/React-movie-db/static/js/runtime-main.63b7f4f0.js",
+    "runtime-main.js.map": "/React-movie-db/static/js/runtime-main.63b7f4f0.js.map",
     "static/css/2.7fe71732.chunk.css": "/React-movie-db/static/css/2.7fe71732.chunk.css",
-    "static/js/2.3f47b16a.chunk.js": "/React-movie-db/static/js/2.3f47b16a.chunk.js",
-    "static/js/2.3f47b16a.chunk.js.map": "/React-movie-db/static/js/2.3f47b16a.chunk.js.map",
+    "static/js/2.0227f3ab.chunk.js": "/React-movie-db/static/js/2.0227f3ab.chunk.js",
+    "static/js/2.0227f3ab.chunk.js.map": "/React-movie-db/static/js/2.0227f3ab.chunk.js.map",
     "index.html": "/React-movie-db/index.html",
-    "precache-manifest.533b8c1b6bb4b1c26d55800b691a5d21.js": "/React-movie-db/precache-manifest.533b8c1b6bb4b1c26d55800b691a5d21.js",
+    "precache-manifest.1fb55e17cc6b29f492d7c9d3f47af5eb.js": "/React-movie-db/precache-manifest.1fb55e17cc6b29f492d7c9d3f47af5eb.js",
     "service-worker.js": "/React-movie-db/service-worker.js",
     "static/css/2.7fe71732.chunk.css.map": "/React-movie-db/static/css/2.7fe71732.chunk.css.map",
     "static/css/main.d6e75f72.chunk.css.map": "/React-movie-db/static/css/main.d6e75f72.chunk.css.map",
-    "static/media/nullw500.png": "/React-movie-db/static/media/nullw500.182fefd9.png"
+    "static/media/empty_heart.png": "/React-movie-db/static/media/empty_heart.21d11d00.png",
+    "static/media/full_heart.png": "/React-movie-db/static/media/full_heart.d9c9e48e.png",
+    "static/media/nullw500.png": "/React-movie-db/static/media/nullw500.182fefd9.png",
+    "static/media/tv_empty.png": "/React-movie-db/static/media/tv_empty.494d6b45.png",
+    "static/media/tv_full.png": "/React-movie-db/static/media/tv_full.ba1ca5fb.png"
   }
 }
