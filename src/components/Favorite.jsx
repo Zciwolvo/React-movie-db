@@ -1,25 +1,36 @@
-import React, {createContext, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { atom, useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import styled from "styled-components";
 import movieStore from "../store/movie";
 
+const empty_heart = require('../images/empty_heart.png')
+const full_heart = require('../images/full_heart.png')
+
+const Heart = styled.img`
+  width: 3em;
+  height: 3em;
+`;
 
 
 const FavoriteList = (props) => {
 
     const favoriteList = useRecoilValue(FavoriteState);
-    
+    const {details} = movieStore
 
     useEffect(()=> {
+      const StateList = favoriteList.map((List) => details.id == List.id)
+      if (StateList.indexOf(true) > -1){
+        props.setinFavorite(true)
+      }
       console.log("List1 ", favoriteList)
-      console.log("List2 ", favoriteList.map((text) => (favoriteList.findIndex((listItem) => listItem === text))))
+      console.log("inFavorite ", props.inFavorite)
+      
   }, [])
+
 
     return (
       <>
-        <FavoriteCreator Value={props.Value} Poster={props.poster} Date={props.date} Title={props.title} Votes={props.votes} favoriteList={favoriteList}/>
-        {favoriteList.map((favoriteItem) => (
-          <FavoriteItem favoritelist={favoriteList} key={favoriteItem.id} item={favoriteItem} />
-        ))}
+        <FavoriteCreator setinFavorite={props.setinFavorite} inFavorite={props.inFavorite} favoriteList={favoriteList}/>
       </>
     );
   }
@@ -41,13 +52,25 @@ const FavoriteList = (props) => {
     const setFavoriteList = useSetRecoilState(FavoriteState);
     const {details} = movieStore
 
+    const deleteItem = () => {
+      props.setinFavorite(!props.inFavorite)
+      const newList = [...props.favoriteList];
+      const index = newList.findIndex(List => List.id == details.id)
+      console.log("index ", index)
+      newList.splice(index, 1);
+      setFavoriteList(newList)
+    }
+
+    
   
     const addItem = () => {
+      props.setinFavorite(!props.props.inFavorite)
+
       setFavoriteList((oldFavoriteList) => [
         ...oldFavoriteList,
         {
-          id: props.Value,
-          poster: details.poster_path,
+          id: details.id,
+          poster_path: details.poster_path,
           release_date: details.release_date,
           original_title: details.title,
           vote_average: details.vote_average,
@@ -55,36 +78,14 @@ const FavoriteList = (props) => {
         },
       ]);
     };
-
     return (
       <div>
-        <button onClick={addItem} >Dodaj do ulubionych</button>
+        <Heart onClick={props.inFavorite === false ? addItem : deleteItem} src={props.inFavorite === false ? empty_heart : full_heart}/>
       </div>
     );
   }
   
 
-
-  const FavoriteItem = ({item}) => {
-    const [favoriteList, setFavoriteList] = useRecoilState(FavoriteState);
-    const index = favoriteList.findIndex((listItem) => listItem === item);
-  
-  
-
-  
-    const deleteItem = (props) => {
-      const newList = removeItemAtIndex(favoriteList, index);
-  
-      setFavoriteList(newList);
-
-    };
-  
-    return (
-      <div>
-        <button onClick={deleteItem}>X</button>
-      </div>
-    );
-  }
   
 
   const removeItemAtIndex = (arr, index) => {

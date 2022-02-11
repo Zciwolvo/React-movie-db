@@ -18,6 +18,10 @@ const ButtonContainer = styled.div`
     padding: 30px;
     text-align: center;
 `;
+const GenreButtonContainer = styled.div`
+    padding: 30px 0 30px 0;
+    text-align: center;
+`;
 
 const Button = styled.button`
     list-style: none;
@@ -43,6 +47,8 @@ const CustomizationMenu = styled.div`
 `;
 
 const GenresMenu = styled.div`
+    margin: auto;
+    width: 80vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -108,7 +114,7 @@ const Navigation = ({ showByYear, setYear ,setGenreID ,showGenre, changePage, ha
       },
       {
         id: 878,
-        name: "Sci-Fi",
+        name: "SciFi",
       },
   
       {
@@ -124,9 +130,9 @@ const Navigation = ({ showByYear, setYear ,setGenreID ,showGenre, changePage, ha
         name: "Western",
       },
     ],
-}; 
+  }; 
     
-const years = {
+    const years = {
     years: [
             {
             year: "2022",
@@ -170,8 +176,44 @@ const years = {
             {
                 year: "2009",
             },
+            {
+              year: "2008",
+            },
+            {
+              year: "2007",
+            },
+            {
+              year: "2006",
+            },
+            {
+              year: "2005",
+            },
+            {
+              year: "2004",
+            },
+            {
+              year: "2003",
+            },
+            {
+              year: "2002",
+            },
+            {
+              year: "2001",
+            },
+            {
+              year: "1999",
+            },
+            {
+              year: "1998",
+            },
+            {
+              year: "1997",
+            },
+            {
+              year: "1996",
+            },
         ]
-}
+  };
 
 
 
@@ -211,18 +253,18 @@ const years = {
         <GenresMenu>
             <h1>Gatunek: </h1>
                 {genres.genres.map((genre) => (
-                <ButtonContainer onMouseEnter={() => setGenreID(genre.id)}>
+                <GenreButtonContainer onMouseEnter={() => setGenreID(genre.id)}>
                         <Link to="/" onClick={showGenre} ><Button>{genre.name}</Button></Link>
-                </ButtonContainer>
+                </GenreButtonContainer>
                     ))}
             
         </GenresMenu>
         <GenresMenu>
             <h1>Rok: </h1>
                 {years.years.map((year) => (
-                <ButtonContainer onMouseEnter={() => setYear(year.year)}>
+                <GenreButtonContainer onMouseEnter={() => setYear(year.year)}>
                         <Link to="/" onClick={showByYear} ><Button>{year.year}</Button></Link>
-                </ButtonContainer>
+                </GenreButtonContainer>
                     ))}
             
         </GenresMenu>

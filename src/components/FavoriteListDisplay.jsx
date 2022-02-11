@@ -1,11 +1,22 @@
-import React, {useState, useEffect} from "react"
-import {observer} from "mobx-react"
+import React, {useState} from "react"
+import styled from "styled-components"
+import { RecoilRoot } from "recoil"
 import { Link } from "react-router-dom"
 import store from "../store/home"
 import Pagination from "rc-pagination"
-
+import FavoriteList from "./Favorite"
+import WatchList from "./Watchlist"
 
 const nullw500 = require('../images/nullw500.png')
+
+const Addto = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 5em;
+    width: 100%;
+`;
+
 
 const DisplayFavorite = (props) => {
 
@@ -13,6 +24,7 @@ const DisplayFavorite = (props) => {
     const {popular, loaded} = store
     const {changePage, scrollTop} = props
     const favoriteList = JSON.parse(localStorage.getItem('FavoriteList')) 
+    const [inFavorite, setinFavorite] = useState(false)
 
 
 
@@ -39,6 +51,7 @@ const DisplayFavorite = (props) => {
                                             <div className="infos-three">{vote_average}</div>
                                         </div>
                                     </Link>
+                                    
                                 </div>
                             )
                         )} 

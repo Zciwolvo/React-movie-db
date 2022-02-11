@@ -1,4 +1,5 @@
 import React, {useEffect, useContext} from "react"
+import styled from "styled-components"
 import {observer} from "mobx-react"
 import movieStore from "../store/movie"
 import "../styles/movie.scss"
@@ -8,6 +9,14 @@ import Watchlist from "./Watchlist"
 
 const nullw185 = require('../images/nullw185.png')
 const nullw500 = require('../images/nullw500.png')
+
+const Addto = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 10em;
+    justify-content: space-around;
+`;
+
 
 const Movie = observer((props) => {
 
@@ -63,10 +72,10 @@ const Movie = observer((props) => {
                         </span> : null) : null}
                     </div>
                     <RecoilRoot>
-                        <div className="movie-infos">
-                            <FavoriteList Value={props.id}/>
-                            <Watchlist Value={props.id}/>
-                        </div>
+                        <Addto>
+                            <FavoriteList/>
+                            <Watchlist/>
+                        </Addto>
                     </RecoilRoot>
                 </div>
                 

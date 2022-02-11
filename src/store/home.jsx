@@ -10,7 +10,6 @@ const randomNumber = (min, max) => {
 let random = randomNumber(0, 20)
 
 const favoriteList = JSON.parse(localStorage.getItem('FavoriteList')) 
-const favoriteListValues = favoriteList.map((List) => List.text)
 
 class Home {
     popular = []
@@ -25,7 +24,7 @@ class Home {
         })
 
         fetch(
-                `https://api.themoviedb.org/3/movie/${type}?api_key=${api_key}&language=en-US&page=${page}`
+                `https://api.themoviedb.org/3/movie/${type}?api_key=${api_key}&language=pl-PL&page=${page}`
             )
             .then(res => res.json())
             .then(res => {
@@ -43,7 +42,7 @@ class Home {
         })
 
         fetch(
-                `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&page=${page}&with_genres=${genre}`
+                `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=pl-PL&page=${page}&with_genres=${genre}`
             )
             .then(res => res.json())
             .then(res => {
@@ -61,7 +60,7 @@ class Home {
         })
 
         fetch(
-                `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&primary_release_year=${year}&page=${page}`
+                `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=pl-PL&primary_release_year=${year}&page=${page}`
             )
             .then(res => res.json())
             .then(res => {
@@ -80,7 +79,7 @@ class Home {
             this.currentPage = 1;
         });
         fetch(
-                `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${term}&page=${page}&include_adult=false`
+                `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=pl-PL&query=${term}&page=${page}&include_adult=false`
             )
             .then(res => res.json())
             .then(res => {

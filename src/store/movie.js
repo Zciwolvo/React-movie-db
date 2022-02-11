@@ -16,7 +16,7 @@ class Movie {
         })
 
         fetch(
-                `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=en-US`
+                `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=pl-PL`
             )
             .then(res => res.json())
             .then(res => {
@@ -36,7 +36,7 @@ class Movie {
             })
 
         fetch(
-                `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${api_key}&language=en-US&page=1`
+                `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${api_key}&language=pl-PL&page=1`
             )
             .then(res => res.json())
             .then(res => (

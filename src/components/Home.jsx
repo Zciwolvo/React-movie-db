@@ -6,6 +6,8 @@ import Search from "./Search"
 import "../styles/homepage.scss"
 import 'rc-pagination/assets/index.css'
 import "../styles/pagination.scss"
+
+
 const Home = (props) => {
     const {Watchlist, Favorite ,term, handleInput} = props
     return(Watchlist === false ? (Favorite === false ? 

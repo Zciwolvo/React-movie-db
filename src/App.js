@@ -14,7 +14,6 @@ const App = observer((props) => {
 
     useEffect(()=> {
         console.log("Pop", props.store.popular)
-        console.log("List", favoriteList)
         props.store.fetchPopular("popular", props.store.currentPage)
     }, [])
 
@@ -104,8 +103,7 @@ const App = observer((props) => {
 
         const { popular, searchResults, loaded, term } = props.store
 
-        const favoriteList = JSON.parse(localStorage.getItem('FavoriteList')) 
-        const favoriteListValues = favoriteList.map((List) => List.text)
+
 
         const [Favorite, setFavorite] = useState(false)
         const [Watchlist, setWatchlist] = useState(false)
