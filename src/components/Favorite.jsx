@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { atom, useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { atom, useSetRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import movieStore from "../store/movie";
 
@@ -16,21 +16,22 @@ const FavoriteList = (props) => {
 
     const favoriteList = useRecoilValue(FavoriteState);
     const {details} = movieStore
+    const [inFavorite, setinFavorite] = useState(false)
 
     useEffect(()=> {
-      const StateList = favoriteList.map((List) => details.id == List.id)
+      const StateList = favoriteList.map((List) => details.id === List.id)
       if (StateList.indexOf(true) > -1){
-        props.setinFavorite(true)
+        setinFavorite(true)
       }
-      console.log("List1 ", favoriteList)
-      console.log("inFavorite ", props.inFavorite)
+      console.log("List1 ", typeof(favoriteList))
+      console.log("inFavorite ", inFavorite)
       
   }, [])
 
 
     return (
       <>
-        <FavoriteCreator setinFavorite={props.setinFavorite} inFavorite={props.inFavorite} favoriteList={favoriteList}/>
+        <FavoriteCreator setinFavorite={setinFavorite} inFavorite={inFavorite} favoriteList={favoriteList}/>
       </>
     );
   }
@@ -55,7 +56,7 @@ const FavoriteList = (props) => {
     const deleteItem = () => {
       props.setinFavorite(!props.inFavorite)
       const newList = [...props.favoriteList];
-      const index = newList.findIndex(List => List.id == details.id)
+      const index = newList.findIndex(List => List.id === details.id)
       console.log("index ", index)
       newList.splice(index, 1);
       setFavoriteList(newList)
@@ -64,7 +65,7 @@ const FavoriteList = (props) => {
     
   
     const addItem = () => {
-      props.setinFavorite(!props.props.inFavorite)
+      props.setinFavorite(!props.inFavorite)
 
       setFavoriteList((oldFavoriteList) => [
         ...oldFavoriteList,
@@ -86,11 +87,6 @@ const FavoriteList = (props) => {
   }
   
 
-  
-
-  const removeItemAtIndex = (arr, index) => {
-    return [...arr.slice(0, index), ...arr.slice(index + 1)];
-  }
 
 const FavoriteState = atom({
     key: 'FavoriteState',

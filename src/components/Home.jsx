@@ -9,7 +9,7 @@ import "../styles/pagination.scss"
 
 
 const Home = (props) => {
-    const {Watchlist, Favorite ,term, handleInput} = props
+    const {Watchlist, Favorite ,term} = props
     return(Watchlist === false ? (Favorite === false ? 
         (<div className="relative">{term.length === 0 ? <Popular {...props} /> : <Search {...props} />}</div>)
          : 

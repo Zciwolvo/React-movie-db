@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react"
-import {observer} from "mobx-react"
+import React from "react"
 import { Link } from "react-router-dom"
 import store from "../store/home"
 import Pagination from "rc-pagination"
@@ -27,7 +26,7 @@ const Popular = (props) => {
                                 <div 
                                 className="movie-item infos-container" 
                                 key={id}>
-                                    <Link to={`/movie/${id}`} onClick={scrollTop}>       
+                                    <Link to={`/React-movie-db/movie/${id}`} onClick={scrollTop}>       
                                         <img src={poster_path ? 
                                         `https://image.tmdb.org/t/p/w500${poster_path}` :
                                             `${nullw500}`} 

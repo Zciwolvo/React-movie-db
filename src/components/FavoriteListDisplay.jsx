@@ -1,36 +1,34 @@
-import React, {useState} from "react"
-import styled from "styled-components"
-import { RecoilRoot } from "recoil"
+import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom"
 import store from "../store/home"
-import Pagination from "rc-pagination"
-import FavoriteList from "./Favorite"
-import WatchList from "./Watchlist"
+
 
 const nullw500 = require('../images/nullw500.png')
-
-const Addto = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 5em;
-    width: 100%;
-`;
 
 
 const DisplayFavorite = (props) => {
 
 
-    const {popular, loaded} = store
-    const {changePage, scrollTop} = props
-    const favoriteList = JSON.parse(localStorage.getItem('FavoriteList')) 
-    const [inFavorite, setinFavorite] = useState(false)
+    const {loaded} = store
+    const {scrollTop} = props
+    const favoriteList = JSON.parse(localStorage.getItem('FavoriteList'))
+    const [empty, setEmpty] = useState(true)
 
+    useEffect(() => {
+        console.log(favoriteList)
+        try{
+        if (favoriteList.hasOwnProperty(0)) {
+            setEmpty(false)
+        }}
+        catch{setEmpty(true)}
+    })
 
 
 
         return (
             <section>
+                {empty ? <div className="loading">Jeszcze nie masz żadnych polubionych filmów...</div> :
+                <div>
                 {loaded ? <div className="movies-grid">
                         {favoriteList.map(({id, 
                         poster_path, 
@@ -40,7 +38,7 @@ const DisplayFavorite = (props) => {
                                 <div 
                                 className="movie-item infos-container" 
                                 key={id}>
-                                    <Link to={`/movie/${id}`} onClick={scrollTop}>       
+                                    <Link to={`React-movie-db/movie/${id}`} onClick={scrollTop}>       
                                         <img src={poster_path ? 
                                         `https://image.tmdb.org/t/p/w500${poster_path}` :
                                             `${nullw500}`} 
@@ -57,14 +55,10 @@ const DisplayFavorite = (props) => {
                         )} 
                     </div> 
                     : <div className="loading">Loading...</div>
-                }
-                <div className="paginator">
-                <Pagination
-                total={favoriteList.total_results}
-                pageSize={20}
-                onChange={changePage}
-                />
+                    }
                 </div>
+            }
+                
             </section>
         )
     

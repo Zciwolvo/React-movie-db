@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { atom, useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
+import { atom, useSetRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import movieStore from "../store/movie";
 
@@ -20,7 +20,7 @@ const WatchList = (props) => {
     
 
     useEffect(()=> {
-      const StateList = watchList.map((List) => details.id == List.id)
+      const StateList = watchList.map((List) => details.id === List.id)
       if (StateList.indexOf(true) > -1){
         setinWatchList(true)
       }
@@ -55,7 +55,7 @@ const WatchList = (props) => {
     const deleteItem = () => {
       props.setinWatchList(!props.inWatchList)
       const newList = [...props.watchList];
-      const index = newList.findIndex(List => List.id == details.id)
+      const index = newList.findIndex(List => List.id === details.id)
       console.log("index ", index)
       newList.splice(index, 1);
       setWatchList(newList)
@@ -85,32 +85,7 @@ const WatchList = (props) => {
     );
   }
   
-
-  const WatchlistItem = ({item}) => {
-    const [watchList, setWatchList] = useRecoilState(WatchlistState);
-    const index = watchList.findIndex((listItem) => listItem === item);
   
-  
-
-  
-    const deleteItem = (props) => {
-      const newList = removeItemAtIndex(watchList, index);
-  
-      setWatchList(newList);
-
-    };
-  
-    return (
-      <div>
-        <button onClick={deleteItem}>X</button>
-      </div>
-    );
-  }
-  
-
-  const removeItemAtIndex = (arr, index) => {
-    return [...arr.slice(0, index), ...arr.slice(index + 1)];
-  }
 
 const WatchlistState = atom({
     key: 'WatchlistState',

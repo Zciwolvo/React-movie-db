@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
-import {atom, RecoilRoot, useRecoilValue} from "recoil";
+import React, { useEffect, useState } from 'react';
 import { observer } from "mobx-react";
 import { Switch, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Movie from "./components/Movie";
 import "./styles/main.scss";
-import FavoriteList from './components/Favorite';
+import { ThemeProvider } from 'theme-ui'
+import { theme } from './styles/themes';
 
 
 const App = observer((props) => {
@@ -15,6 +15,7 @@ const App = observer((props) => {
     useEffect(()=> {
         console.log("Pop", props.store.popular)
         props.store.fetchPopular("popular", props.store.currentPage)
+        setCurrent("popular")
     }, [])
 
     const handleInput = (e) => {
@@ -30,7 +31,7 @@ const App = observer((props) => {
         props.store.currentPage = e
         console.log("page", e)
         if (props.store.term.length === 0) {
-            props.store.fetchPopular("popular",props.store.currentPage)
+            props.store.fetchPopular(current, props.store.currentPage)
         } else {
             props.store.fetchSearch(props.store.term, props.store.currentPage)
         }
@@ -43,6 +44,7 @@ const App = observer((props) => {
         setWatchlist(false)
         props.store.currentPage = 1
         props.store.fetchPopular("popular",props.store.currentPage)
+        setCurrent("popular")
     }
 
     const showTopRated = () => {
@@ -51,14 +53,16 @@ const App = observer((props) => {
         props.store.fetchPopular("top_rated",props.store.currentPage)
         setFavorite(false)
         setWatchlist(false)
+        setCurrent("top_rated")
     }
 
     const showLatest = () => {
         props.store.term = ""
         props.store.currentPage = 1
-        props.store.fetchPopular("latest",props.store.currentPage)
+        props.store.fetchPopular("upcoming",props.store.currentPage)
         setFavorite(false)
         setWatchlist(false)
+        setCurrent("latest")
     }
 
     const showFavorite = () => {
@@ -80,7 +84,7 @@ const App = observer((props) => {
         props.store.currentPage = 1
         setWatchlist(false)
         setFavorite(false)
-        props.store.fetchGenre(genreID, props.store.currentPage)
+        props.store.fetchGenre(genreID, year, props.store.currentPage)
     }
 
     const showByYear = () => {
@@ -94,7 +98,6 @@ const App = observer((props) => {
 
     const scrollTop = () => {
         window.scrollTo(0, 0)
-        
     }
     
 
@@ -103,19 +106,15 @@ const App = observer((props) => {
 
         const { popular, searchResults, loaded, term } = props.store
 
-
-
         const [Favorite, setFavorite] = useState(false)
         const [Watchlist, setWatchlist] = useState(false)
-
-
-
-
-
+        const [current, setCurrent] = useState("popular")
 
         return( 
         <div className = "relative" >
-            <Navigation showByYear={showByYear} setYear={setYear} setGenreID={setGenreID} showGenre={showGenre} showWatchlist={showWatchlist} showFavorite={showFavorite} handleInput = {handleInput} changePage = {changePage} term = {term} clearSearch = { clearSearch } showTopRated = {showTopRated} showLatest = {showLatest}/> 
+            <ThemeProvider theme={theme}>
+                <Navigation setCurrent={setCurrent} showByYear={showByYear} setYear={setYear} setGenreID={setGenreID} showGenre={showGenre} showWatchlist={showWatchlist} showFavorite={showFavorite} handleInput = {handleInput} changePage = {changePage} term = {term} clearSearch = { clearSearch } showTopRated = {showTopRated} showLatest = {showLatest}/> 
+            </ThemeProvider>
             <Switch>
                 <Route exact path = "/React-movie-db" >
                     <Home changePage = { changePage }
@@ -130,10 +129,10 @@ const App = observer((props) => {
             
             <Switch> {
                 !loaded ? null : !term ?
-                    popular.results.map(i => <Route path = { `/movie/${i.id}` }key = { i.id } >
-                        <Movie  id = { i.id }scrollTop = { scrollTop }/>
+                    popular.results.map(i => <Route path = {`/React-movie-db/movie/${i.id}`} key = { i.id } >
+                        <Movie  id = { i.id } scrollTop = { scrollTop }/>
                         </Route> ) :
-                    searchResults.results.map(i => < Route path = { `/movie/${i.id}` }
+                    searchResults.results.map(i => < Route path = {`/React-movie-db/movie/${i.id}`}
                         key = { i.id } >
                         <Movie  id = { i.id } scrollTop = { scrollTop }/> 
                         </Route> )

@@ -9,7 +9,6 @@ const randomNumber = (min, max) => {
 
 let random = randomNumber(0, 20)
 
-const favoriteList = JSON.parse(localStorage.getItem('FavoriteList')) 
 
 class Home {
     popular = []
@@ -36,13 +35,13 @@ class Home {
             });
     }
 
-    fetchGenre(genre,page) {
+    fetchGenre(genre,year,page) {
         runInAction(() => {
             this.loaded = false
         })
 
         fetch(
-                `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=pl-PL&page=${page}&with_genres=${genre}`
+                `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=pl-PL&page=${page}&with_genres=${genre}&primary_release_year=${year}`
             )
             .then(res => res.json())
             .then(res => {
